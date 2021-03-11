@@ -1,4 +1,5 @@
 import './App.css';
+import AuthForm from './components/AuthForm';
 
 function App() {
   return (
@@ -6,7 +7,7 @@ function App() {
       className="App"
       style={{ background: 'lavender', color: 'pink', fontSize: '100px' }}
     >
-      <h1>gi</h1>{' '}
+      <AuthForm />
     </div>
   );
 }

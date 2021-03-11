@@ -21,3 +21,18 @@ const persistUser = (dispatch) => () => {
     dispatch({ type: 'login', payload: token });
   }
 };
+
+const requestToken = (dispatch) => ({ email, password }) => {
+  return;
+};
+
+const clearToken = (dispatch) => () => {
+  return;
+};
+
+let actions = {};
+
+export const { Context, Provider } = createDataContext(authReducer, actions, {
+  token: null,
+  errorMessage: null,
+});
