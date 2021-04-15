@@ -1,0 +1,123 @@
+$black: #000;
+$blue: #0000ee;
+$light-grey: #8899a6;
+$dark-grey: #14171a;
+$black-pearl: #15202b;
+$grey-pearl: #192734;
+$white: #ffffff;
+$light-blue: #1da1f2;
+$strong-blue: #1b95e0;
+$green: #17bf63;
+$red: #e0245e;
+$dg: #262626;
+$lg: #eee;
+
+.profile-container {
+  height: 100%;
+  width: 100%;
+  padding: 3vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: $white;
+}
+
+.profile-card-container {
+  position: relative;
+  box-sizing: border-box;
+  padding-top: 37%;
+  padding-left: 3%;
+  padding-bottom: 3%;
+  border-bottom: 1px solid $light-grey;
+  .profile-cover-photo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 40%;
+    background: blue;
+  }
+  .profile-user-avatar {
+    position: absolute;
+    top: 27%;
+    border-radius: 50%;
+    width: 10vw;
+    height: 10vw;
+    background: green;
+    border: 3px solid $black-pearl;
+  }
+  .profile-card-buttons {
+    display: flex;
+    justify-content: flex-end;
+    position: absolute;
+    top: 40%;
+    right: 0;
+    width: 100%;
+    button {
+      margin: 10px 5px;
+      height: 30px;
+      width: 30px;
+      border-radius: 100%;
+    }
+    .profile-card-follow-button {
+      height: 30px;
+      width: 80px;
+      border-radius: 40px;
+    }
+  }
+  .profile-user-info {
+    display: flex;
+    width: 100%;
+    p {
+      margin: 15px 10px 15px 0;
+    }
+    // justify-content: space-evenly;
+  }
+  .profile-card-follows {
+  }
+  span {
+    margin: 0 3px;
+  }
+}
+
+.modal {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: rgba(67, 67, 67, 0.5);
+  .edit-form {
+    background-color: $black-pearl;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    height: 50%;
+    width: 50%;
+    input[type='text'] {
+      margin: 10px;
+    }
+    input {
+      border-radius: 40px;
+      padding: 10px;
+      border: none;
+      &:focus {
+        outline: 0;
+      }
+    }
+    .close-modal {
+      position: absolute;
+      top: 10px;
+      right: 5px;
+    }
+  }
+}

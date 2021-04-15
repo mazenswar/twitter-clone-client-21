@@ -2,11 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import { Provider as TweetProvider } from './context/TweetContext';
+import { Provider as AuthProvider } from './context/AuthContext';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <AuthProvider>
+      <TweetProvider>
+        <App />
+      </TweetProvider>
+    </AuthProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

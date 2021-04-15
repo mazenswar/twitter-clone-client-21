@@ -1,0 +1,35 @@
+$black: #000;
+$blue: #0000ee;
+$light-grey: #8899a6;
+$dark-grey: #14171a;
+$black-pearl: #15202b;
+$grey-pearl: #192734;
+$white: #ffffff;
+$light-blue: #1da1f2;
+$strong-blue: #1b95e0;
+$green: #17bf63;
+$red: #e0245e;
+$dg: #262626;
+$lg: #eee;
+
+form {
+  display: flex;
+  flex-direction: column;
+  margin: 5vh auto;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  padding: 1vw;
+  color: $white;
+
+  input {
+    width: 90%;
+    margin: 0.5vw 0;
+    padding: 1vw;
+    width: 70%;
+    border: 1px solid $dg;
+  }
+  input[type='submit'] {
+    width: 10vw;
+  }
+}

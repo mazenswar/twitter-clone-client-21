@@ -1,0 +1,108 @@
+$black: #000;
+$blue: #0000ee;
+$light-grey: #8899a6;
+$dark-grey: #14171a;
+$black-pearl: #15202b;
+$grey-pearl: #192734;
+$white: #ffffff;
+$light-blue: #1da1f2;
+$strong-blue: #1b95e0;
+$green: #17bf63;
+$red: #e0245e;
+$dg: #262626;
+$lg: #eee;
+
+.single-tweet {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  padding: 1vw;
+  border-bottom: 1px solid $light-grey;
+
+  .single-tweet-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 70%;
+    font-weight: bold;
+    span {
+      margin: 0 20px;
+    }
+    .single-tweet-username,
+    .single-tweet-date {
+      font-weight: normal;
+      color: $light-grey;
+      text-decoration: none;
+    }
+    .single-tweet-user-img {
+      height: 50px;
+      width: 50px;
+      border-radius: 100%;
+      background-color: $light-blue;
+      margin-right: 10px;
+    }
+    .single-tweet-fullname {
+      text-decoration: none;
+      color: $white;
+      margin-right: 10px;
+    }
+  }
+  .single-tweet-content {
+    padding: 25px 0;
+    padding-left: 9%;
+    .hashtags,
+    .mentions {
+      color: $light-blue;
+    }
+  }
+  .single-tweet-footer {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    cursor: pointer;
+    div,
+    div.liked {
+      border: none;
+      width: 50px;
+      color: $white;
+      transition: 0.5s;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      svg {
+        fill: $white;
+        width: 15px;
+      }
+      &:focus {
+        outline: 0;
+      }
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+    div.liked {
+      color: $red;
+      svg {
+        fill: $red;
+        width: 15px;
+        margin: 0 10px;
+      }
+    }
+  }
+}
+
+// Retweet
+
+.single-retweet {
+  .single-retweet-header {
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+  }
+  svg {
+    fill: $white;
+    width: 20px;
+  }
+}
