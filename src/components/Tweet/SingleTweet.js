@@ -50,7 +50,7 @@ const SingleTweet = ({
         <LikeButton
           likes={likes}
           userId={currentUserId}
-          handleLike={newLikeToDB}
+          handleLike={() => newLikeToDB(id)}
         />
         <RetweetButton
           retweets={retweets}

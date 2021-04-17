@@ -24,14 +24,13 @@ const reducer = (state, { type, payload }) => {
 // RETWEET HELPER
 
 const handleRetweet = (tweets, obj) => {
-  const newTweets = [...tweets, obj];
+  const newTweets = [obj, ...tweets];
   return updateTweets(newTweets, obj.tweet);
 };
 
 // DELETE TWEET HELPER
 
 const removeTweet = (tweets, data) => {
-  // updateTweets(newTweets, obj.tweet);
   const updatedTweets = [...tweets].filter((tweetObj) => {
     if (tweetObj.rt && tweetObj.id === data.rt_id) {
       return false;
@@ -165,14 +164,15 @@ const fetchTweets = (dispatch) => async (page, id = null) => {
 
 const newTweetToDB = (dispatch) => async (tweetObj) => {
   try {
-    const response = await twitterAPI.post(API.RETWEETS_URL, {
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-        Authorization: `bearer ` + localStorage.token,
-      },
-      data: tweetObj,
-    });
+    const response = await twitterAPI.post(
+      API.TWEETS_URL,
+      { tweet: tweetObj },
+      {
+        headers: {
+          Authorization: `bearer ` + localStorage.token,
+        },
+      }
+    );
     dispatch(newTweetAction(response.data));
   } catch (e) {
     console.log(e);
@@ -192,14 +192,15 @@ const deleteTweetFromDB = (dispatch) => async (tweetId) => {
 
 const newLikeToDB = (dispatch) => async (tweetId) => {
   try {
-    const response = await twitterAPI.post(API.LIKES_URL, {
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-        Authorization: `bearer ` + localStorage.token,
-      },
-      data: { tweet_id: tweetId },
-    });
+    const response = await twitterAPI.post(
+      API.LIKES_URL,
+      { tweet_id: tweetId },
+      {
+        headers: {
+          Authorization: `bearer ` + localStorage.token,
+        },
+      }
+    );
     dispatch(updateLikes(response.data));
   } catch (e) {
     console.log(e);

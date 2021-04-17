@@ -1,11 +1,13 @@
 import { useEffect, useState, useContext } from 'react';
 import './App.css';
-import AuthForm from './components/AuthForm';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Context as AuthContext } from './context/AuthContext';
 // Components
+import AuthForm from './components/AuthForm';
 import Home from './pages/Home';
 import UserShow from './pages/UserShow';
+import LeftBar from './components/LeftBar';
+
 // styles
 
 import './stylesheets/Pages/home.scss';
@@ -38,10 +40,14 @@ function App() {
   }
   return (
     <Router>
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/users/:id" component={UserShow} />
-      </Switch>
+      <LeftBar />
+      <div className="main">
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/users/:id" component={UserShow} />
+          <Route exact path="/profile" component={UserShow} />
+        </Switch>
+      </div>
     </Router>
   );
 }

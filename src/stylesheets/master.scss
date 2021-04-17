@@ -33,7 +33,11 @@ body,
 }
 
 #root {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-areas: 'left main right';
   nav {
+    grid-area: 'left';
     max-width: 100%;
     display: flex;
     flex-direction: column;
@@ -47,7 +51,9 @@ body,
     }
   }
 }
-
+.main {
+  grid-area: 'main';
+}
 .grey {
   color: $light-grey;
 }
