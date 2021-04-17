@@ -22,9 +22,9 @@ $lg: #eee;
 
   .single-tweet-header {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-evenly;
     align-items: center;
-    width: 70%;
+    width: 100%;
     font-weight: bold;
     span {
       margin: 0 20px;
@@ -36,11 +36,15 @@ $lg: #eee;
       text-decoration: none;
     }
     .single-tweet-user-img {
-      height: 50px;
-      width: 50px;
-      border-radius: 100%;
+      width: 12%;
+      border-radius: 50%;
       background-color: $light-blue;
       margin-right: 10px;
+      &::after {
+        content: '';
+        padding-bottom: 100%;
+        display: block;
+      }
     }
     .single-tweet-fullname {
       text-decoration: none;

@@ -28,7 +28,10 @@ const SingleTweet = ({
   ////////////////////////////
 
   return (
-    <div className="single-tweet">
+    <div
+      className="single-tweet"
+      style={del ? { border: '1px solid aqua', transform: 'scale(0.875)' } : {}}
+    >
       <div className="single-tweet-header">
         <div className="single-tweet-user-img" />
         <Link to={`/users/${user_id}`} className="single-tweet-fullname">

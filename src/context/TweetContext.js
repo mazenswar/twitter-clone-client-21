@@ -132,16 +132,25 @@ const createRetweetToDB = (dispatch) => async (tweetId) => {
   }
 };
 
-const fetchTweets = (dispatch) => async (page, id = null) => {
+const fetchTweets = (dispatch) => async (pathname) => {
   let url;
-  switch (page) {
-    case 'Home':
+  let path;
+  let id;
+  if (pathname.includes('users')) {
+    const arr = pathname.split('/');
+    path = arr[1];
+    id = arr[2];
+  } else {
+    path = pathname;
+  }
+  switch (path) {
+    case '/':
       url = API.TIMELINE_URL;
       break;
-    case 'User':
+    case 'users':
       url = API.SHOW_TWEETS_URL(id);
       break;
-    case 'Profile':
+    case '/profile':
       url = API.USER_TWEETS_URL;
       break;
     default:

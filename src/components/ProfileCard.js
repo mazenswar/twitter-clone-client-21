@@ -3,6 +3,7 @@ import ProfileEdit from './ProfileEdit';
 import { Context as AuthContext } from '../context/AuthContext';
 import { useParams } from 'react-router-dom';
 import twitterAPI from '../api/twitter';
+import API from '../API_CONSTANTS';
 
 const ProfileCard = () => {
   const [user, setUser] = useState({
@@ -16,31 +17,35 @@ const ProfileCard = () => {
   const [modal, setModal] = useState(false);
 
   useEffect(() => {
-    const getUser = async () => {
-      const response = await twitterAPI.get(`/users/${id}`);
-      setUser(response.data);
-    };
-    getUser();
-  }, []);
+    if (id) {
+      const getUser = async () => {
+        const response = await twitterAPI.get(`/users/${id}`);
+        setUser(response.data);
+      };
+      getUser();
+    } else {
+      setUser(currentUser);
+    }
+  }, [id]);
 
   //// functions
 
   const handleFollow = async () => {
-    let url = '';
-    const response = await twitterAPI.post(url, {
-      data: { id },
-      headers: { Authorization: `bearer ${localStorage.token}` },
-    });
+    let url = API;
+    const response = await twitterAPI.post(
+      url,
+      { id },
+      { headers: { Authorization: `bearer ${localStorage.token}` } }
+    );
     setUser(response.data);
-    // dispatch(ShowActions.followUpdateToDB(followeeId));
   };
 
   const followButton = () => {
-    if (user.followers) {
-      const follower = user.followers.find(
+    if (user.followees) {
+      const followee = user.followees.find(
         (user) => user.id === currentUser.id
       );
-      return follower ? (
+      return followee ? (
         <button className="profile-card-follow-button" onClick={handleFollow}>
           Unfollow
         </button>
@@ -57,10 +62,7 @@ const ProfileCard = () => {
   };
 
   const profileButtons = () => {
-    const current = id === currentUser.id;
-    const followee = currentUser.followees.find((f) => f.id === id);
-
-    if (current) {
+    if (!!!id) {
       return (
         <div className="profile-card-buttons">
           <button
@@ -71,25 +73,15 @@ const ProfileCard = () => {
           </button>
         </div>
       );
-    } else if (followee) {
-      return (
-        <div className="profile-card-buttons">
-          <button>1</button>
-          <button>2</button>
-          <button>3</button>
-          {followButton()}
-        </div>
-      );
-    } else {
-      return (
-        <div className="profile-card-buttons">
-          <button>1</button>
-          <button>2</button>
-          <button>3</button>
-          {followButton()}
-        </div>
-      );
     }
+    return (
+      <div className="profile-card-buttons">
+        <button>1</button>
+        <button>2</button>
+        <button>3</button>
+        {followButton()}
+      </div>
+    );
   };
 
   return (

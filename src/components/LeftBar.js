@@ -2,19 +2,16 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Context as AuthContext } from '../context/AuthContext';
 
-export default function LeftBar() {
+export default function LeftBar({ logoutUser }) {
   const {
     state: { user },
-    logoutUser,
   } = useContext(AuthContext);
 
   const userLinks = () => (
     <nav>
       <Link to="/">Home</Link>
       <Link to="/profile">Profile</Link>
-      <Link to="/" onClick={logoutUser}>
-        Logout
-      </Link>
+      <h3 onClick={logoutUser}>Logout</h3>
     </nav>
   );
 
@@ -26,5 +23,5 @@ export default function LeftBar() {
     </nav>
   );
 
-  return user.id ? userLinks() : visitorLinks();
+  return user ? userLinks() : visitorLinks();
 }

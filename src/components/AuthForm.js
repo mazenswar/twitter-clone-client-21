@@ -1,27 +1,29 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Context as AuthContext } from '../context/AuthContext';
 
-export default function AuthForm() {
+export default function AuthForm({ setAuth }) {
+  const history = useHistory();
   const [login, setLogin] = useState(true);
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const { errorMessage, createOrLoginUser } = useContext(AuthContext);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await createOrLoginUser({ username, password, login });
+    setAuth();
+    history.push('/');
+  };
   return (
     <>
       {errorMessage ? <h1>{errorMessage}</h1> : null}
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          createOrLoginUser({ email, password, login });
-        }}
-      >
+      <form onSubmit={handleSubmit}>
         <h1>{login ? 'Log In' : 'Sign Up'}</h1>
         <input
           type="text"
-          name="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          name="username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
         />
         <input
           type="password"

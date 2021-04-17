@@ -18,7 +18,7 @@ const Retweet = ({ tweet, username }) => {
         </p>
       </div>
 
-      <SingleTweet del={false} {...tweet} />
+      <SingleTweet del={true} {...tweet} />
     </div>
   );
 };

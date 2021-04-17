@@ -1,17 +1,20 @@
 import { useContext, useEffect } from 'react';
+import { useLocation, useParams } from 'react-router';
 import Retweet from '../components/Tweet/Retweet';
 import SingleTweet from '../components/Tweet/SingleTweet';
 import { Context as TweetContext } from '../context/TweetContext';
 
-const useRenderTweets = ({ page, id }) => {
+const useRenderTweets = () => {
+  const { pathname } = useLocation();
+  const { id } = useParams();
   const { state, fetchTweets } = useContext(TweetContext);
   useEffect(() => {
     if (!id) {
-      fetchTweets(page);
+      fetchTweets(pathname);
     } else {
-      fetchTweets(page, id);
+      fetchTweets(pathname, id);
     }
-  }, [page, id]);
+  }, [pathname, id]);
   const renderTweets = () => {
     const components = state.map((tweet) => {
       if (tweet.rt) {
